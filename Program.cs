@@ -10,7 +10,7 @@ class Program
     {
         Console.Clear();
         Console.WriteLine("Seja Bem-Vindo!\nO que deseja fazer?");
-        Console.WriteLine("1 -  Abrir arquivo");
+        Console.WriteLine("1 - Abrir arquivo");
         Console.WriteLine("2 - Criar novo arquivo");
         Console.WriteLine("0 - Sair");
         short option = short.Parse(Console.ReadLine());
@@ -26,7 +26,19 @@ class Program
 
     static void Abrir()
     {
+        Console.Clear();
+        Console.WriteLine("Qual caminho do arquivo?");
+        string path = Console.ReadLine();
 
+        using (var file = new StreamReader(path))
+        {
+            string text = file.ReadToEnd();
+            Console.WriteLine(text);
+        }
+
+        Console.WriteLine("");
+        Console.ReadLine();
+        Menu();
     }
 
     static void Editar()
@@ -58,7 +70,7 @@ class Program
         {
             file.Write(text);
         }
-        
+
         Console.WriteLine($"Arquivo {path} salvo com sucesso!");
         Console.ReadLine();
         Menu();
